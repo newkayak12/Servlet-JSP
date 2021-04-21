@@ -8,20 +8,42 @@
 		<body>
 			<fieldset>
 				<legend>get방식 전송</legend>
-					<form action="" method = "get">
+					<form action="login.do" method = "get">  <!-- action는 서버에서 지정한 매핑 주소를 적는다. 혹은 webServlet Annotation의 주소 값-->
 						<input type="text" name="userId" id="userId"><br>
 						<input type="password" name="pw" id="pw"><br>
 						<input type="submit" value="로그인"><br>
 					</form>
 			</fieldset>
+			
+			<br> <hr>
+			
 			<fieldset>
 				<legend>post방식 전송</legend>
-					<form action="" method = "get">
+					<form action="login.do" method = "post">
 						<input type="text" name="userId" id="userId"><br>
 						<input type="password" name="pw" id="pw"><br>
 						<input type="submit" value="로그인"><br>
 					</form>
 			</fieldset>
+			<br> <hr>
+			
+			<h2>클라이언트가 보내는 파라미터 처리하기 </h2>
+			
+			<a href = "views/testPerson.html"> 개인 취향 테스트</a>
+			<!-- /view/testPerson.html  이러면 아예 base에서 다른 트리로 이동하고 : 절대경로-->
+			<!-- view/testPerson.html 이러면 원래 있던 트리의 하부 트리 노드로 이동한다. : 상대경로-->
+						
+			
+			
+			<!-- 서블릿 - 서블릿으로 넘기기 (dispatcher) -->
+			
+			<h2>클라이언트가 보내는 파라미터 처리하기</h2>
+			<h3> <a href = "views/testPerson.html">개인 취향 테스트</a> </h3>
+			<h3> <a href = "views/testPerson2.html">개인 취향 테스트2 - requestDispatcher</a> </h3>
+			<h3> <a href = "views/testPerson3.html">개인 취향 테스트3 - sendRedirect</a> </h3>
+			
+			
+			
 				
 		</body>
 	</html>
