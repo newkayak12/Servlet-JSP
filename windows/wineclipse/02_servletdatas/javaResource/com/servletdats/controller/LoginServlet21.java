@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login.do")
-	public class LoginServlet extends HttpServlet{
+	public class LoginServlet21 extends HttpServlet{
 	
 		/**
 		 * 

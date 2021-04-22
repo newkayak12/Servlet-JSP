@@ -12,13 +12,13 @@ import javax.servlet.http.*;
  * Servlet implementation class TestPersonServlet
  */
 @WebServlet("/testperson.do")
-public class TestPersonServlet extends HttpServlet {
+public class TestPersonServlet21 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TestPersonServlet() {
+    public TestPersonServlet21() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -145,8 +145,8 @@ public class TestPersonServlet extends HttpServlet {
 				html += "<h2> 당신의 이름은 " +name +"<h2>\n";
 				html += "<h2> 당신의 나이는 " +age+ "<h2>\n";
 				html += "<h2> 당신의 키는" +height+ "<h2>\n";
-				html += "<p> 당신이 좋아하는 색은 ";
-				html += " <span style='background-color:"+color+";'></span>";
+				html += "<p> 당신이 좋아하는 색은</p>  <span style='background-color:"+color+";'></span>";
+				
 						
 				html += "<P> 당신이 좋아하는 음식은 </p> <ul>";
 				

@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TestPersonServlet2
  */
-@WebServlet("/pagemove.do")
-public class PageMoveServlet extends HttpServlet {
+@WebServlet("/pagemover.do")
+public class PageMoveServlet21 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PageMoveServlet() {
+    public PageMoveServlet21() {
         super();
         // TODO Auto-generated constructor stub
     }
