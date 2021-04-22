@@ -44,15 +44,20 @@ public class UseDataServlet22 extends HttpServlet {
 			html += "<li> contextData :" + contextData +"</li>";
 			html += "<li> sessionData :" + sessionData +"</li>";
 			html += "</ul>";
-			html += "<button onclick = 'locataion.assign(\"02_servletdatas/sessiondel.do\");'>session삭제</button>";
+//			html += "<button onclick = 'locataion.assign(\"02_servletdatas/sessiondel.do\")'>session삭제</button>";
+			
+			
+			html += "<button onclick='location.assign(\"/02_servletdatas/sessiondelete.do\")'>세션 삭제</button> ";
 			html += " </body>";
 			html += "</html>";
+			
+			
 			
 			out.print(html);
 			
 			// 첫 응답까지는 request/ context/ session 모두 살아 있다.  그러면 다시 한 번 응답한다면 어떨까?
 			
-					
+//		contextdata지워지는 순간 다시 보기 10:48분 			
 	}
 
 	/**

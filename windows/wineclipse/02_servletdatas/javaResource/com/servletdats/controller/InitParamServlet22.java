@@ -1,22 +1,26 @@
 package com.servletdats.controller;
 
 import java.io.IOException;
-
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SessionDel
+ * Servlet implementation class InitParamServlet
  */
-@WebServlet("/sessiondelete.do")
-	public class SessionDel22 extends HttpServlet {
+
+
+//
+//@WebServlet("/initparam.do")
+	public class InitParamServlet22 extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 	       
 	    /**
 	     * @see HttpServlet#HttpServlet()
 	     */
-	    public SessionDel22() {
+	    public InitParamServlet22() {
 	        super();
 	        // TODO Auto-generated constructor stub
 	    }
@@ -25,16 +29,12 @@ import javax.servlet.http.*;
 		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			//session객체는 개발자가 로직에 의해서 삭제하지 않는 한 유지된다. 
-			// 따라서 여기서 삭제하는 것을 할 것\
-//			session 객체를 삭제하는 방법 : session.invalidate() 메소드 호출
+			//초기값으로 설정한 (web.xml의 init-param) 데이터 가져오기
+			String initParam = (String) getInitParameter("email");
+						System.out.println(initParam);
+					
 			
-			HttpSession session = request.getSession();
-				session.invalidate();
 			
-			RequestDispatcher rd  = request.getRequestDispatcher("/usedata.do");
-				rd.forward(request, response);
-		
 		}
 	
 		/**
