@@ -21,8 +21,9 @@ public class MyWrapper extends HttpServletRequestWrapper  {
 	@Override
 		public String getParameter(String key) {
 			
+			
 			return super.getParameter(key)+"-sh-";
 //			HttpServletRequest.getParameter값을 불러와서 문자열을 추가적으로 붙여서 출력해준다. 
-	}
+		}
 
 }
