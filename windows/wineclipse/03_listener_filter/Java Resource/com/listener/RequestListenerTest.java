@@ -13,7 +13,7 @@ import javax.servlet.http.*;
  */
 
 
-//@WebListener
+@WebListener
 
 //필터 때문에 주석함
 	public class RequestListenerTest implements ServletRequestListener, ServletRequestAttributeListener {
