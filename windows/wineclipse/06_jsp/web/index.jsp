@@ -90,6 +90,13 @@
 	<%} %>
 	<h2> session의 값은 <%=userId %></h2>
 	<h2> application의 값은 <%=adminEmail %></h2>
+	<h2> <a href = "views/membersearch.jsp">회원조회</a> </h2>
+	
+	<h2>error page 설정하기</h2>
+	<h3> <a href = "views/errortest.jsp">에러 테스트하기</a> </h3>
+	
+	<h3> include 이용하기</h3>
+	<h3> <a href = "views/content.jsp">MAINVIEW</a> </h3>
 	
 	
 </body>
