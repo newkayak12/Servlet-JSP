@@ -64,7 +64,7 @@
             </div>
             <div>
             <% if(loginMem == null) { %>
-                 <form action="login.post" method="POST">
+                 <form action="login.do" method="POST">
 	                <table>
 	                    <tr>
 	                        <td>ID</td>

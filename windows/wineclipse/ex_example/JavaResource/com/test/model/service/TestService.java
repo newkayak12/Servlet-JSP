@@ -29,7 +29,10 @@ public class TestService {
 		//		오라클 연결
 		//			드라이버 연결
 				Member m = dao.login(conn, userId, password);
-				
+							System.out.println("service");
+							System.out.println(m.getMemberId());
+							System.out.println(m.getMemberPwd());
+							
 		return m;
 	}
 

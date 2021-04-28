@@ -1,14 +1,15 @@
 
-	package common;
+	package com.common;
 
-	import java.io.FileInputStream;
-	import java.io.IOException;
-	import java.sql.Connection;
-	import java.sql.DriverManager;
-	import java.sql.ResultSet;
-	import java.sql.SQLException;
-	import java.sql.Statement;
-	import java.util.Properties;
+	import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
 
 	public class JDBCTemplate {
 		//dao에서 공통적으로 사용하는 
@@ -21,14 +22,29 @@
 		
 		
 		public static Connection getConnection() {
+			Properties prop = new Properties();
+			String driver = "";
+			String url ="";
+			String id = "";
+			String pw = "";
 			
 			Connection conn = null;
 			
 				try {
 					
-					Class.forName("oracle.jdbc.driver.OracleDriver");
+//					String fileName = JDBCTemplate.class.getResource("/driver/driver.properties").getPath();
+					String fileName = "C:\\Users\\newka\\OneDrive - 충남대학교\\dev\\Servlet-JSP\\windows\\wineclipse\\07_HelloMVC\\JavaResource\\resource\\driver\\driver.properties";
+						
+						prop.load(new FileReader(fileName));
 					
-					conn = DriverManager.getConnection( "jdbc:oracle:thin:@localhost:1521:xe","web","web");
+						driver = prop.getProperty("driver");
+						url = prop.getProperty("url");
+						id = prop.getProperty("id");
+						pw = prop.getProperty("pw");
+						
+					Class.forName(driver);
+					
+					conn = DriverManager.getConnection(url, id, pw);
 					
 					//트렌젝션 오토커밋
 					
@@ -39,6 +55,12 @@
 				} catch (SQLException e	) {
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

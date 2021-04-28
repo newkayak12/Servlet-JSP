@@ -28,10 +28,13 @@ public class TestDao {
 										m.setMemberId(rs.getString("MEMBER_ID"));
 										m.setMemberPwd(rs.getString("MEMBER_PWD"));
 										
-										System.out.println(m.getMemberId());
-										System.out.println(m.getMemberPwd());
+												System.out.println("dao");
+												System.out.println(m.getMemberId());
+												System.out.println(m.getMemberPwd());
 								} else {
-									System.out.println("fail");
+									
+												System.out.println("dao");
+												System.out.println("fail");
 								}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block

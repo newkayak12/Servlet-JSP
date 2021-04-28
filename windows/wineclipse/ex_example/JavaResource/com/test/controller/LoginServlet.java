@@ -17,7 +17,7 @@ import com.test.model.vo.Member;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login.post")
+@WebServlet("/login.do")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,11 +41,20 @@ public class LoginServlet extends HttpServlet {
 			//DB에 userId, password일치하는 것이 있는지 확인
 			TestService service = new TestService();
 			Member m = service.login(userId, password);
+					
+					System.out.println("login servlet");
+					System.out.println(userId);
+					System.out.println(password);
+					
+					System.out.println(m.getMemberId());
+					System.out.println(m.getMemberPwd());
+			
 					//db에서 가져온 것을 로그인 처리를 함
 					if(m!=null) {
 //						 로그인 성공
+						System.out.println("login null");
 						HttpSession session  = request.getSession();
-							session.setAttribute("loingMember",m);
+							session.setAttribute("loginMember",m);
 					} else {
 						
 //						로그인 실패
