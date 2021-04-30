@@ -22,5 +22,25 @@ public class MemberService {
 		 
 		 return m;
 	}
+	public int enroll(String userId, String password, String userName, int age, String email, String phone,
+			String address, char gender, String hobby) {
+		
+		conn= getConnection();
+		int result =  memDao.enroll(conn,userId, password, userName, age, email, phone, address, gender, hobby);
+			if(result>0) {
+				
+				commit(conn);
+				close(conn);
+			} else {
+				rollback(conn);
+				close(conn);
+			}
+		
+		
+		return result;
+	}
+	
+	
+	
 
 }

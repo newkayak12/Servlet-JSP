@@ -1,5 +1,9 @@
 package com.member.model.dao;
 
+import static com.common.JDBCTemplate.close;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,7 +13,6 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Properties;
 
-import static com.common.JDBCTemplate.*;
 import com.member.model.vo.Member;
 
 public class MemberDao {
@@ -18,13 +21,15 @@ public class MemberDao {
 	private Member m = null;
 	private Properties prop = new Properties();
 	private String sql = "";
+	String path = "";
 	
 	
 	public Member login(String userId, String pwd, Connection connection) {
 		
 				try {
-//						String path = MemberDao.class.getResource("/sql/sql.properties").getPath();
-						String path = "C:\\Users\\newka\\OneDrive - 충남대학교\\dev\\Servlet-JSP\\windows\\wineclipse\\07_HelloMVC\\JavaResource\\resource\\sql\\sql.properties";
+					
+						path = MemberDao.class.getResource("").getPath();
+//						String path = "C:\\Users\\newka\\OneDrive - 충남대학교\\dev\\Servlet-JSP\\windows\\wineclipse\\07_HelloMVC\\JavaResource\\resource\\sql\\sql.properties";
 							prop.load(new FileReader(path));
 							sql = prop.getProperty("select");
 							
@@ -46,7 +51,6 @@ public class MemberDao {
 										m.setPhone(rs.getString("Phone"));
 										m.setAddress(rs.getString("ADDRESS"));
 										m.setHobby(rs.getString("HOBBY"));
-										m.setEnrolldate(new Date());
 								}
 				} catch (SQLException | IOException e) {
 					// TODO Auto-generated catch block
@@ -60,5 +64,48 @@ public class MemberDao {
 				
 				
 				return m;
+	}
+
+
+	public int enroll(Connection conn, String userId, String password, String userName, int age, String email,
+			String phone, String address, char gender, String hobby) {
+		
+		path = MemberDao.class.getResource("/").getPath();
+			System.out.println(path);
+			path = MemberDao.class.getResource("/resource").getPath();
+			System.out.println(path);
+			path = MemberDao.class.getResource("/resource/sql/sql.properties").getPath();
+			System.out.println(path);
+		
+			int result = 0;
+				try {
+					prop.load(new FileInputStream(path));
+					sql = prop.getProperty("insert"); 
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, userId );
+					pstmt.setString(2, password);
+					pstmt.setString(3, userName);
+					pstmt.setInt(4, age);
+					pstmt.setString(5, email);
+					pstmt.setString(6, phone);
+					pstmt.setString(7, address);
+					pstmt.setString(8, String.valueOf(gender)) ;
+					pstmt.setString(9,hobby);
+//					pstmt.setString(10, String.valueOf(new Date()));
+					
+					result = pstmt.executeUpdate();
+					
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		
+		
+		return result;
 	}
 }

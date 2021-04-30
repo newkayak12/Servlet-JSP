@@ -32,8 +32,9 @@ import java.util.Properties;
 			
 				try {
 					
-//					String fileName = JDBCTemplate.class.getResource("/driver/driver.properties").getPath();
-					String fileName = "C:\\Users\\newka\\OneDrive - 충남대학교\\dev\\Servlet-JSP\\windows\\wineclipse\\07_HelloMVC\\JavaResource\\resource\\driver\\driver.properties";
+					String fileName = JDBCTemplate.class.getResource("/resource/driver/driver.properties").getPath();
+					System.out.println(fileName);
+//					String fileName = "C:\\Users\\newka\\OneDrive - 충남대학교\\dev\\Servlet-JSP\\windows\\wineclipse\\07_HelloMVC\\JavaResource\\resource\\driver\\driver.properties";
 						
 						prop.load(new FileReader(fileName));
 					
