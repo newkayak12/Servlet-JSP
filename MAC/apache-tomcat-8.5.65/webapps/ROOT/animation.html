@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션 적용하기</title>
+    <style>
+        @keyframes ani{
+            from{
+                background-color: lemonchiffon;
+                font-size: 20px;
+                transform: rotate(30deg);
+            }
+            to{
+                background-color: yellow;
+                border: 1px green dotted;
+                border-radius: 50px;
+                transform: rotate(360deg);
+            }
+        }
+        .anitest:active{
+            animation-name: ani;
+
+            animation-duration: 4s;
+
+            /* animation-direction: normal; */ 
+            animation-direction: alternate; /* 반대방향으로도 반복시킴 */
+
+            /* animation-iteration-count: 3; /* 3번만 돌고 끝남 */
+            animation-iteration-count: infinite; /* 무한 반복 */
+        }
+
+        /* .keyframes ani2{
+            0%{
+                background-color: darkgreen;
+                font-size: 15px;
+                border-radius: 100px;
+                transform: raoate(360deg);
+            }
+            20%{
+                background-color: crimson;
+                width: 300px;
+                height: 300px;
+            }
+            40%{
+                transform: translate;
+            }
+            60%{
+
+            }
+            %80%{
+
+            }
+            100%{
+
+            }
+        }
+        
+        .anitest{
+
+        }
+        .anitest2{
+
+        } */
+
+    </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Chango&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="anitest">기본 애니메이션 적용하기</div>
+    <div class="anitest2">이것도 애니메이션 적용 </div>
+
+
+    <h3>메뉴 만들기</h3>
+    <header>
+        <nav>
+            <ul>
+                <li>main</li>
+                <li>board</li>
+                <li>gallary</li>
+                <li>warehouse</li>
+            </ul>
+        </nav>
+    </header>
+
+    <style>
+        header>nav>ul>li{
+            display: inline-block;
+
+            font-size: 30px;
+
+            font-family: "Chango";
+
+            margin-right: 50px;
+
+            color: skyblue;
+
+            cursor: pointer;
+
+        }
+
+        header>nav li:hover{
+            animation: menumove 0.5s infinite alternate;
+        }
+
+        @keyframes menumove {
+            from{
+                transform: translateX(3px);
+
+                color: blue;
+
+                text-decoration: underline;
+
+                font-size: 40px;
+            }
+            to{
+                transform: translateX(-3px);
+
+                color: skyblue;
+
+                text-decoration: none;
+
+                text-decoration: underline;
+
+                font-size: 40px;
+            }
+        }
+    </style>
+
+
+
+</body>
+
+</html>

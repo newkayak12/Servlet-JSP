@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<title>Test Person</title>
+			
+			<style>
+				ul>li{
+					margin-bottom : 10px;
+				}
+			</style>
+		</head>
+		<!--  --------------------------  -->
+		<body>
+			<p>
+				당신의 취향을 테스트합니다. <br>
+				데이터 입력 후 확인 버튼을 누르세요
+			</p>
+			
+			<form action="/02_servletdatas/pagemover.do" method="post">
+				<ul>
+					<li>이름 <input type = "text" name = "name"/> </li>
+					<li>나이 <input type = "number" name = "age"/> </li>
+					<li>키 <input type = "number" name = "height"/> </li>
+			
+					<li>좋아 하는 색 <br> 
+						<label> <input type = "radio" name ="color" value="lightgreen">연두 </label>
+						<label ><input type = "radio" name ="color" value="royalblue">로얄블루 </label>
+						<label> <input type = "radio" name ="color" value="yello">노랑 </label>
+						<label> <input type = "radio" name ="color" value="skyblue">하늘색 </label>
+						<label> <input type = "radio" name ="color" value="white">하얀색 </label>  
+					</li>
+					
+					<li>
+						<label> <input type="checkbox" name="foods" value="콩불"> 콩불 </label>
+						<label> <input type="checkbox" name="foods" value="카레"> 카레 </label>
+						<label> <input type="checkbox" name="foods" value="마라탕"> 마라탕 </label>
+						<label> <input type="checkbox" name="foods" value="초밥"> 초밥 </label>
+						<label> <input type="checkbox" name="foods" value="라면"> 라면 </label>
+						<label> <input type="checkbox" name="foods" value="스테이크"> 스테이크 </label>
+						
+					</li>
+					
+					<li>
+						 <select name = "animal">
+						 	<option value = "티벳여우"> 티벳여우 </option>
+						 	<option value = "강아지"> 강아지 </option>
+						 	<option value = "고양이"> 고양이 </option>
+						 	<option value = "사막여우"> 사막여우 </option>
+						 </select>
+					</li>
+					
+				</ul>
+				
+				<input type="submit" value="제출">
+			</form>
+		
+		</body>
+	</html>
