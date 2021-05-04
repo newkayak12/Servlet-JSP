@@ -6,10 +6,3 @@
 	<h1 align="center" style="margin:200px;">안녕하세요,mvc입니다.</h1>
 </section>
 <%@ include file="views/common/footer.jsp" %>
-
-
-
-
-
-
-

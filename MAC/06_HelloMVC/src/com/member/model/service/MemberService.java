@@ -21,8 +21,8 @@ public class MemberService {
 		return m;
 	}
 	
-	public int insertMember(Member m)
-	{
+	public int insertMember(Member m){
+		
 		Connection conn=getConnection();
 		int result=dao.insertMember(conn,m);
 		
@@ -84,6 +84,23 @@ public class MemberService {
 		}
 		
 		close(conn);
+		return result;
+	}
+
+	public int checkPw(String userId,  String passwordOld, String passwordNew) {
+		// TODO Auto-generated method stub
+			Connection conn = getConnection();
+			System.out.println("Service "+userId + " " + passwordOld + " " + passwordNew);
+			int result = dao.checkPw(userId,passwordOld, passwordNew, conn);
+			if(result>0) {
+				commit(conn);
+			}  else {
+				rollback(conn);
+			}
+			
+			
+			close(conn);
+		
 		return result;
 	}
 	

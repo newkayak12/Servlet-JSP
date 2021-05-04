@@ -138,16 +138,16 @@ public class MemberDao {
 				
 				try {
 					pstmt = conn.prepareStatement(prop.getProperty("updateMember"));
-					pstmt.setString(1, mUpdate.getUserId());
-					pstmt.setString(2, mUpdate.getPassword());
-					pstmt.setString(3, mUpdate.getUserName());
-					pstmt.setString(4, mUpdate.getGender());
-					pstmt.setInt(5, mUpdate.getAge());
-					pstmt.setString(6, mUpdate.getEmail());
-					pstmt.setString(7, mUpdate.getPhone());
-					pstmt.setString(8, mUpdate.getAddress());
-					pstmt.setString(9, mUpdate.getHobby());
-					pstmt.setString(10, mUpdate.getUserId());
+//					pstmt.setString(1, mUpdate.getUserId());
+//					pstmt.setString(2, mUpdate.getPassword());
+					pstmt.setString(1, mUpdate.getUserName());
+					pstmt.setString(2, mUpdate.getGender());
+					pstmt.setInt(3, mUpdate.getAge());
+					pstmt.setString(4, mUpdate.getEmail());
+					pstmt.setString(5, mUpdate.getPhone());
+					pstmt.setString(6, mUpdate.getAddress());
+					pstmt.setString(7, mUpdate.getHobby());
+					pstmt.setString(8, mUpdate.getUserId());
 					
 					result = pstmt.executeUpdate();
 					
@@ -187,6 +187,46 @@ public class MemberDao {
 		
 		
 		
+		
+		
+		return result;
+	}
+
+	public int checkPw(String userId, String passwordOld, String passwordNew, Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		System.out.println("DAO "+userId + " " + passwordOld + " " + passwordNew);
+			try {
+					
+					pstmt = conn.prepareStatement(prop.getProperty("checkMemberPW"));
+					pstmt.setString(1, userId);
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						System.out.println("DB  " + rs.getString("password"));
+						
+						if(passwordOld.equals(rs.getString("password"))){
+							
+							pstmt = conn.prepareStatement(prop.getProperty("updateMemberPW"));
+							pstmt.setString(1, passwordNew);
+							result = pstmt.executeUpdate();
+							
+							System.out.println("check2");
+							
+						}
+						
+						
+					}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+				
 		
 		
 		return result;

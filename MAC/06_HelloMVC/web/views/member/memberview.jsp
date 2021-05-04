@@ -24,7 +24,7 @@
 						<input type="text" name="userId" id="userId_" value="<%=m.getUserId() %>" readonly required>
 					</td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th>패스워드</th>
 					<td>
 						<input type="password" name="password" id="password_" value="<%=m.getPassword() %>">
@@ -35,7 +35,7 @@
 					<td>	
 						<input type="password" id="password_2"><br>
 					</td>
-				</tr>  
+				</tr>   --%>
 				<tr>
 					<th>이름</th>
 					<td>	
@@ -112,6 +112,7 @@
 				</tr>
 			</table>
 			<input type="button" value="정보수정" onclick="fn_update()"/>
+			<button type = "button" onclick = "fn_password_update()">  비밀번호 변경 </button>
 			<input type="button" value="탈퇴" onclick = "fn_delete()"/>
 		</form>
 	</section>
@@ -146,10 +147,26 @@
 					memberFrm.action = "<%=request.getContextPath()%>/memberdelete.do";
 					memberFrm.submit(); --%>
 					
+					// $("<form>").append 해서아예 폼을 만들어서 쿼리스트링 안쓰고 한 번 보내보자
+					
 			} else {
 				$("#password_2").focus();
 				alert('탈퇴를 하려면 비밀번호를 확인해주세요');
 			}
+			
+		}
+		
+		
+		const fn_password_update= () =>{
+			 const url = '<%=request.getContextPath()%>/passwordUpdate?userId=<%=m.getUserId()%>';
+			 const status = 'width = 400px, height = 210px left =  500px top = 200px';
+			 
+			 open(url, "_blank", status);
+			 
+			 <%-- 
+			 memberFrm.action = '<%=request.getContextPath()%>/views/member/passwordupdate.jsp';
+			 memberFrm.target = title;
+			 memberFrm.submit(); --%>
 			
 		}
 		

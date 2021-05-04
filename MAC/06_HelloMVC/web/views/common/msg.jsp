@@ -13,6 +13,8 @@
 <body>
 	<script>
 		alert('<%=msg%>');
+		
+		<%=request.getAttribute("script")%>
 		//페이지전환하는 로직구성
 		location.replace('<%=request.getContextPath()%><%=request.getAttribute("loc")%>');
 	</script>

@@ -83,7 +83,7 @@
    		<input type = "hidden" name = "userIdCheck" id="">
   	</form>
    
-   s
+   
 	<script>
 		$(function(){
 			//비밀번호와 비밀번호확인의 값이 일치하는지 ㅊcheck
@@ -123,7 +123,7 @@
 			//form의 name속성으로필요한 데이터 세팅하기
 			
 			checkDuplicateId.userIdCheck.value = $("#userId_").val();
-			checkDuplicateId.methd = "post";
+			checkDuplicateId.method = "post";
 			checkDuplicateId.action = "<%=request.getContextPath()%>/checkDuplicatedId";
 			//이 form이 제출되는 window를 지정할 수가 있다.
 			

@@ -9,16 +9,16 @@ import javax.servlet.http.*;
 import com.member.model.service.*;
 
 /**
- * Servlet implementation class MemberDeleteServlet
+ * Servlet implementation class UpdatePasswordEnd
  */
-@WebServlet("/memberdelete.do")
-public class MemberDeleteServlet extends HttpServlet {
+@WebServlet(name="updatePasswordEnd",urlPatterns = "/updatePasswordEnd")
+public class UpdatePasswordEnd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDeleteServlet() {
+    public UpdatePasswordEnd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,23 +27,29 @@ public class MemberDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1.클라이언트가 보낸 id값을 기준으로  (pk라서) 
+		// TODO Auto-generated method stub
 		
-		
+//		String userId = (String) request.getAttribute("userId");
 		
 		String userId = request.getParameter("userId");
-		int result = new MemberService().memberDelete(userId);
+		String passwordOld = request.getParameter("password");
+		String passwordNew = request.getParameter("password_new");
 		
-		String msg = (result==0? "탈퇴가 정상적으로 진행되지 않았습니다." : "탈퇴가 완료되었습니다.");
-//		String loc = (result==0? "/memberview.do":"/logout");
-		String loc = "/logout";
+			System.out.println(userId + " " + passwordOld + " " + passwordNew);	
+			
+		int flag = new MemberService().checkPw(userId, passwordOld, passwordNew);
+			
+		System.out.println("result fin : " +flag);
+		
+		String loc = (flag>0)? "/":("/passwordUpdate?userId="+userId);
+		String msg = (flag>0)? "비밀번호 변경에 성공했습니다.":"비밀번호 변경에 실패했습니다.";
+		String script = (flag>0)? "window.close();":"";
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
+		request.setAttribute("script", script);
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		
-		
 	}
 
 	/**

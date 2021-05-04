@@ -14,7 +14,7 @@ import com.member.model.vo.Member;
 /**
  * Servlet implementation class MemebrEnrollEndServlet
  */
-@WebServlet("/memberenrollend.do")
+@WebServlet(name = "enrollendservet", urlPatterns = "/memberenrollend.do")
 public class MemebrEnrollEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +31,7 @@ public class MemebrEnrollEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//전송된 데이터가 한글일 경우 글자가 깨짐.....
-		request.setCharacterEncoding("utf-8");
+//		request.setCharacterEncoding("utf-8");
 		
 		//회원가입로직 처리하기
 		//1. 클라이언트가 가입을 위해 전송하는 데이터를 받아옴

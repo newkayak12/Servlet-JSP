@@ -11,7 +11,7 @@ import com.member.model.vo.*;
 /**
  * Servlet implementation class MemberUpdate
  */
-@WebServlet("/memberupdate.do")
+@WebServlet(name = "memberupdateservlet", urlPatterns = "/memberupdate.do")
 public class MemberUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,11 +27,11 @@ public class MemberUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
+//		request.setCharacterEncoding("utf-8");
+//		response.setCharacterEncoding("utf-8");
 		
 		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
+//		String password = request.getParameter("password");
 		String userName = request.getParameter("userName");
 		int age = Integer.parseInt(request.getParameter("age"));
 		String email = request.getParameter("email");
@@ -42,7 +42,7 @@ public class MemberUpdate extends HttpServlet {
 		
 		Member mUpdate = new Member();
 		mUpdate.setUserId(userId);
-		mUpdate.setPassword(password);
+		mUpdate.setPassword(null);
 		mUpdate.setUserName(userName);
 		mUpdate.setAge(age);
 		mUpdate.setEmail(email);
