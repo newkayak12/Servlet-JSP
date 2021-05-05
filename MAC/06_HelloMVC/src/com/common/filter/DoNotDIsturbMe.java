@@ -6,10 +6,12 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
+import com.member.model.vo.*;
+
 /**
  * Servlet Filter implementation class DoNotDIstubMe
  */
-@WebFilter("/DoNotDIstubMe")
+@WebFilter(filterName = "/DoNotDIstubMe", servletNames = {"memberupdateservlet", "memberViewServ"})
 public class DoNotDIsturbMe implements Filter {
 
     /**
@@ -34,9 +36,28 @@ public class DoNotDIsturbMe implements Filter {
 		// place your code here
 
 		// pass the request along the filter chain
-		DoNotDisturbMeWrapper dndall =  new DoNotDisturbMeWrapper((HttpServletRequest)request);
+//		DoNotDisturbMeWrapper dndall =  new DoNotDisturbMeWrapper((HttpServletRequest)request);
+		HttpServletRequest rq = (HttpServletRequest) request;
+		HttpSession session = rq.getSession(false);
 		
-		chain.doFilter(dndall, response);
+		Member m = (Member) session.getAttribute("loginMember");
+		
+			if(m!=null) {
+					
+				chain.doFilter(request, response);
+				
+			} else {
+				
+				rq.setAttribute("msg", "invalid Access!");
+				rq.setAttribute("loc", "/");
+				rq.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
+				
+				
+			}
+		
+		
+		
+		
 	}
 
 	/**

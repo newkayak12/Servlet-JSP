@@ -12,7 +12,7 @@ import com.member.model.vo.*;
 /**
  * Servlet implementation class MemberVIewServlet
  */
-@WebServlet("/memberview.do")
+@WebServlet(name = "memberViewServ", urlPatterns = "/memberview.do")
 public class MemberVIewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
