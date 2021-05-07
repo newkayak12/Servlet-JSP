@@ -1,10 +1,14 @@
 package com.member.controller;
 
 import java.io.*;
+import java.security.*;
 
+import javax.crypto.*;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
+
+import com.common.*;
 import com.member.model.service.*;
 import com.member.model.vo.*;
 
@@ -36,6 +40,9 @@ public class MemberUpdate extends HttpServlet {
 		int age = Integer.parseInt(request.getParameter("age"));
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
+			
+			
+			
 		String address = request.getParameter("address");
 		String gender = request.getParameter("gender");
 		String[] hobby = request.getParameterValues("hobby");

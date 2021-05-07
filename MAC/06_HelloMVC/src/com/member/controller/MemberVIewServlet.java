@@ -1,11 +1,14 @@
 package com.member.controller;
 
 import java.io.*;
+import java.security.*;
 
+import javax.crypto.*;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
+import com.common.*;
 import com.member.model.service.*;
 import com.member.model.vo.*;
 
@@ -33,6 +36,16 @@ public class MemberVIewServlet extends HttpServlet {
 //		클라이언트가 보낸 아이디를 기준으로 정보를 가져옴
 		String userId = request.getParameter("userId");
 		Member m = new MemberService().checkDuplicateId(userId);
+		
+		try {
+			
+			m.setEmail(AESCryptor.decrypt(m.getEmail()));
+			m.setPhone(AESCryptor.decrypt(m.getPhone()));
+			
+		} catch (Exception e) {
+			
+		}
+		
 		
 		//m이 null이면 회원정보 수정 불가
 		//msg페이지로 이동해서 알람를 출력한다. 로그인을 취소하고 메인화면으로 이동

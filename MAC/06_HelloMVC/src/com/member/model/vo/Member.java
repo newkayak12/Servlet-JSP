@@ -1,6 +1,11 @@
 package com.member.model.vo;
 
+import java.security.*;
 import java.util.Date;
+
+import javax.crypto.*;
+
+import com.common.*;
 
 public class Member {
 	private String userId;
@@ -74,6 +79,10 @@ public class Member {
 	}
 
 	public String getEmail() {
+		
+		
+		
+		
 		return email;
 	}
 
@@ -82,6 +91,8 @@ public class Member {
 	}
 
 	public String getPhone() {
+		
+		
 		return phone;
 	}
 
@@ -90,6 +101,8 @@ public class Member {
 	}
 
 	public String getAddress() {
+		
+		
 		return address;
 	}
 

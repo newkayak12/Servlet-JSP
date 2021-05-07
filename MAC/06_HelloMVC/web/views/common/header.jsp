@@ -91,6 +91,11 @@
 					<li class="home"><a href="">Home</a></li>
 					<li id="notice"><a href="">공지사항</a></li>
 					<li id="board"><a href="">게시판</a></li>
+					<% if((loginMember != null)  &&  (loginMember.getUserId()).equals("admin"))  {%>
+					<li id="admin-member"><a href="<%=request.getContextPath()%>/memberList.admin">회원 관리</a></li>
+					<!-- 쿼리 스트링으로 넘겨도 될 것 같구... -->
+					<%}  %>
+					
 				</ul>
 			</nav>
 		</header>

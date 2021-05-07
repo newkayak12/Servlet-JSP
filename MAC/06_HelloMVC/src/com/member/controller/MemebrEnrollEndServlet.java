@@ -1,15 +1,14 @@
 package com.member.controller;
 
-import java.io.IOException;
+import java.io.*;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
 
-import com.member.model.service.MemberService;
-import com.member.model.vo.Member;
+import com.common.*;
+import com.member.model.service.*;
+import com.member.model.vo.*;
 
 /**
  * Servlet implementation class MemebrEnrollEndServlet
@@ -43,6 +42,15 @@ public class MemebrEnrollEndServlet extends HttpServlet {
 		int age=Integer.parseInt(request.getParameter("age"));
 		String email=request.getParameter("email");
 		String phone=request.getParameter("phone");
+			
+			try {
+				
+				email = AESCryptor.encrypt(email);
+				phone = AESCryptor.encrypt(phone);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		
 		String address=request.getParameter("address");
 		String[] hobby=request.getParameterValues("hobby");
 		
