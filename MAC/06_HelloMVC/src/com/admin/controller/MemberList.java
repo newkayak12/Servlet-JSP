@@ -13,7 +13,7 @@ import com.member.model.vo.*;
 /**
  * Servlet implementation class MemberList
  */
-@WebServlet("/memberList.admin")
+@WebServlet("/admin/memberList")
 public class MemberList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -62,7 +62,7 @@ public class MemberList extends HttpServlet {
 				               			  cPage = 1;
 				               		  }
 				               		  
-		                   int numPerPage = 5;
+		                   int numPerPage = 10;
 		                   		
 				                   		try {
 				                   				numPerPage = Integer.parseInt(request.getParameter("numPerPage"));	
@@ -87,6 +87,7 @@ public class MemberList extends HttpServlet {
 	               		cPage가 2면 pageNo 1
 	               		cPage가 3이면 pageNo 1
 	               		cPage가 4이면 pageNo 1
+	               		
 	               		cPage가 6면 pageNo 5
 	               		cPage가 9면 pageNo 9
                		*/
@@ -117,7 +118,7 @@ public class MemberList extends HttpServlet {
                				
                			} else {
                				
-               				pageBar += "<a href ='"+request.getContextPath()+"/memberList.admin?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'>[이전]</a>";
+               				pageBar += "<a href ='"+request.getContextPath()+"/admin/memberList?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'>[이전]</a>";
                			}
                			
                			
@@ -126,11 +127,17 @@ public class MemberList extends HttpServlet {
                			while(!(pageNo >pageEnd || pageNo>totalPage)) {
 	               				if(cPage==pageNo) {
 	               					pageBar += "<span>"+"&nbsp;&nbsp;"+pageNo+"&nbsp;&nbsp;"+"</span>";
+	               					
 	               				} else {
-	               					pageBar+="<a href = '" + request.getContextPath()+"/memberList.admin?cPage="+pageNo+"&numPerPage=" +numPerPage+"'>"+"&nbsp;&nbsp;"+pageNo+"&nbsp;&nbsp;"+"</a>";
+	               					pageBar+="<a href = '" + request.getContextPath()+"/admin/memberList?cPage="+pageNo+"&numPerPage=" +numPerPage+"'>"+"&nbsp;&nbsp;"+pageNo+"&nbsp;&nbsp;"+"</a>";
 	               				}
                				pageNo++;
                			}
+               			
+//               			c 1/no 1
+//               			1은 span  no++  
+//               			2는 c가 2 no가 2 pp가 4   no ++  >> 이 상태에서 이 페이지로 쿼리스트링을 보내면 
+//               			3은 c가 3 no가 3 pp가 4   no ++ 
                			
                			
                			
@@ -139,7 +146,7 @@ public class MemberList extends HttpServlet {
                				pageBar+= "<span>&nbsp;&nbsp;</span>";
                				
                			} else {
-               				pageBar += "<a href ='" + request.getContextPath()+"/memberList.admin?cPage="+pageNo+"&numPerPage="+numPerPage+"'>[다음]</a>";
+               				pageBar += "<a href ='" + request.getContextPath()+"/admin/memberList?cPage="+pageNo+"&numPerPage="+numPerPage+"'>[다음]</a>";
                			}
                			
                			
@@ -147,8 +154,9 @@ public class MemberList extends HttpServlet {
                			
                			
 			                   		
-			                   		
+			             request.setAttribute("nPerPage", numPerPage);      		
 			             request.setAttribute("pageBar", pageBar); 	
+			             request.setAttribute("where", "MemberList");
        				List<Member> result =  new AdminService().showAllMember(cPage, numPerPage);
 					request.setAttribute("list", result);
 					
@@ -157,7 +165,7 @@ public class MemberList extends HttpServlet {
 					//도착 페이지?
 					
 					
-				}
+				} 
 	}
 
 	/**

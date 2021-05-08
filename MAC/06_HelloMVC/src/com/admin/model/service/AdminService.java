@@ -35,4 +35,16 @@ public class AdminService {
 		
 		return count;
 	}
+
+
+
+	public List<Member> conditionalSearch(String searchKeyword, String searchType, int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		
+		List<Member> result = dao.conditionalSearch(conn, searchKeyword, searchType, cPage, numPerPage);
+		
+		close(conn);
+		// TODO Auto-generated method stub
+		return result;
+	}
 }

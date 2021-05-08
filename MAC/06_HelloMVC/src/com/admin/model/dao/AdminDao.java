@@ -1,5 +1,7 @@
 package com.admin.model.dao;
 
+import static com.common.JDBCTemplate.*;
+
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -103,6 +105,9 @@ public class AdminDao {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally {
+				
+				close(pstmt);
 			}
 			
 		
@@ -134,9 +139,105 @@ public class AdminDao {
 		
 				} catch (SQLException e) {
 					// TODO: handle exception
+				} finally {
+					
+					close(pstmt);
 				}
+				
+			
 			return num;
 
 
+	}
+
+
+
+
+	public List<Member> conditionalSearch(Connection conn, String searchKeyword, String searchType, int cPage, int numPerPage) {
+		List<Member> result = new ArrayList<Member>();
+		Member m = null;
+		System.out.println("----------------------------------");
+		System.out.println("daoKeyword : " + searchKeyword);
+		System.out.println("daosearchType : " + searchType);
+		System.out.println("daoCpage : "+cPage);
+		System.out.println("daoNumperPage : " + numPerPage);
+		System.out.println("----------------------------------");
+				try {
+					
+					String sql = prop.getProperty("admin_conditional").replace("@", searchType);
+						pstmt = conn.prepareStatement(sql);
+						searchKeyword = "%"+searchKeyword+"%";
+						pstmt.setString(1, searchKeyword);
+						pstmt.setInt(2,cPage);
+						pstmt.setInt(3,numPerPage);
+
+							
+							rs = pstmt.executeQuery();
+							while(rs.next()){
+								
+								//조회된 row가 있다
+								m=new Member();
+								m.setUserId(rs.getString("userid"));
+								m.setPassword(rs.getString("password"));
+								m.setUserName(rs.getString("username"));
+								m.setAge(rs.getInt("age"));
+								//char형으로 데이터를 받을 때 사용
+								//m.setGender(rs.getString("gender").charAt(0));
+								m.setGender(rs.getString("gender"));
+								
+								String email = null;
+									try {
+										
+										
+										email = AESCryptor.decrypt(rs.getString("email"));
+										
+										
+									} catch (Exception e) {
+										
+										email  = rs.getString("email");
+									}
+								
+								
+								m.setEmail(email);
+								
+								String phone = null;
+									try {
+										
+										
+										phone = AESCryptor.decrypt(rs.getString("phone"));
+										
+										
+									} catch (Exception e) {
+										
+										phone  = rs.getString("phone");
+									}
+									
+								
+								m.setPhone(phone);
+								
+								m.setAddress(rs.getString("address"));
+								m.setHobby(rs.getString("hobby"));
+								m.setEnrollDate(rs.getDate("enrolldate"));
+								
+								result.add(m);
+								
+								
+							}
+						
+						
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					
+					close(rs);
+					close(pstmt);
+					
+				}
+			System.out.println("list's size dao : " + result.size());
+		
+		
+		
+		return result;
 	}
 }

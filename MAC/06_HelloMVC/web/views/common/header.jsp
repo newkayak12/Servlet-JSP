@@ -24,13 +24,13 @@
 <head>
 <meta charset="UTF-8">
 <title>HelloMVC</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath() %>/css/style.css'>
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div id="container">
 		<header>
-			<h1>Hello MVC</h1>
+			<h1><a href = "<%=request.getContextPath()%>/" style = "text-decoration: none; color: black;">Hello MVC</a></h1>
 			<div class="login-container">
 			<%if(loginMember==null){ %>
 				<form id="loginFrm" action="<%=request.getContextPath() %>/login" method="post" 
@@ -92,7 +92,7 @@
 					<li id="notice"><a href="">공지사항</a></li>
 					<li id="board"><a href="">게시판</a></li>
 					<% if((loginMember != null)  &&  (loginMember.getUserId()).equals("admin"))  {%>
-					<li id="admin-member"><a href="<%=request.getContextPath()%>/memberList.admin">회원 관리</a></li>
+					<li id="admin-member"><a href="<%=request.getContextPath()%>/admin/memberList">회원 관리</a></li>
 					<!-- 쿼리 스트링으로 넘겨도 될 것 같구... -->
 					<%}  %>
 					
