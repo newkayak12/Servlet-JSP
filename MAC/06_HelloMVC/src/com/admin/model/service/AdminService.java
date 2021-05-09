@@ -47,4 +47,16 @@ public class AdminService {
 		// TODO Auto-generated method stub
 		return result;
 	}
+
+
+
+	public int conditionalcount(String searchKeyword, String searchType) {
+			Connection conn = getConnection();
+			
+			int resultCount = dao.conditionalCount(conn, searchKeyword, searchType);
+			close(conn);
+		
+		
+		return resultCount;
+	}
 }

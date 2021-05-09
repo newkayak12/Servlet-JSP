@@ -58,7 +58,9 @@ public class SearchMemberList extends HttpServlet {
 					}
 					
 		List<Member> result = new AdminService().conditionalSearch(searchKeyword, searchType, cPage, numPerPage);
-		int totalData = result.size();
+		int resultCount = new AdminService().conditionalcount(searchKeyword, searchType);
+		System.out.println(resultCount);
+		int totalData = resultCount;
 		int totalPage = (int) Math.ceil((double)totalData/numPerPage);
 		int pageBarSize = 4;
 		

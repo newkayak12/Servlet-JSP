@@ -168,8 +168,8 @@ public class AdminDao {
 						pstmt = conn.prepareStatement(sql);
 						searchKeyword = "%"+searchKeyword+"%";
 						pstmt.setString(1, searchKeyword);
-						pstmt.setInt(2,cPage);
-						pstmt.setInt(3,numPerPage);
+						pstmt.setInt(2,(cPage-1)*numPerPage +1);
+						pstmt.setInt(3,(cPage*numPerPage));
 
 							
 							rs = pstmt.executeQuery();
@@ -239,5 +239,36 @@ public class AdminDao {
 		
 		
 		return result;
+	}
+
+
+
+
+	public int conditionalCount(Connection conn, String searchKeyword, String searchType) {
+		int resultCount = 0;
+		String sql = prop.getProperty("admin_conditional_count").replace("@", searchType);
+		String keyword = "%"+searchKeyword+"%";
+		try {
+				
+				System.out.println(sql);
+				System.out.println("dao : "+ keyword +" , "+ searchType);
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, keyword);
+				
+				rs= pstmt.executeQuery();
+				
+				if(rs.next()) {
+					resultCount = rs.getInt(1);
+				}
+				
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultCount;
 	}
 }
