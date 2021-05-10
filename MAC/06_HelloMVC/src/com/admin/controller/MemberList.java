@@ -70,7 +70,7 @@ public class MemberList extends HttpServlet {
 				                   			
 				                   		}
 		                   		
-		                   		
+		       System.out.println(numPerPage);             		
            	/*
            	 *  사용자가 원하는 페이지를 호출할 수 있게 pageBar를 구성해보자!
            	 *  

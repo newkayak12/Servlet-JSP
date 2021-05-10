@@ -92,17 +92,21 @@
         	  
         	  
         	 let numPerPage =  $("select#numPerPage").val();
+        	  $("#numPerPage_numperhidden").val(numPerPage);
+        	  console.log(numPerPage);
         	 let where = "";
         	 
         	 
         	 <% if(request.getAttribute("where").equals("MemberList")){
         	 %>
-        	 		where = '<%=request.getContextPath()%>/admin/memberList?numPerPage=';
+        	 		where = '<%=request.getContextPath()%>/admin/memberList';
         	 		
         	 <%} else {%>
-        	 		where = '<%=request.getContextPath()%>/admin/searchmemberlist?numPerPage=';
+        	 		where = '<%=request.getContextPath()%>/admin/searchmemberlist';
         	 <% }%>
-        	  $("#numPerPage-form").attr("action",where+numPerPage);
+        	 
+        	 
+        	  $("#numPerPage-form").attr("action",where);
               $("#numPerPage-form").submit();
         	  
           }
@@ -146,17 +150,17 @@
         		</div>
         </div>
          
-        
         <div id = "numPerPage-container">
         	페이지당 회원수 : 
         	<form action="" id="numPerPage-form">
         		<select name = "numPerPage" id="numPerPage" onchange="fn_numPerPageChange()">
-        			<option value="10">10</option>
-        			<option value="5">5</option>
-        			<option value="3">3</option>
+        			<option value="10"<%--  <%=(request.getParameter("numPerPage")).equals("10")||request.getAttribute("nPerPage")==null? "selected":"" %> --%> >10</option>
+        			<option value="5"<%-- "<%=(request.getParameter("numPerPage")).equals("5")&&request.getAttribute("nPerPage")!=null? "selected":"" %> --%> >5</option>
+        			<option value="3"<%--  <%=(request.getParameter("numPerPage")).equals("3")&&request.getAttribute("nPerPage")!=null? "selected":"" %> --%>>3</option>
         		</select>
         		<input type="hidden" name="searchType" id="numPerPage_hiddenType">
         		<input type="hidden" name="searchKeyword" id="numPerPage_hiddenSearch">
+        		<inpu type="hidden" name="numPerPage" id='numPerPage_numperhidden'> 
         	</form>
         </div>
         

@@ -251,7 +251,6 @@ public class AdminDao {
 		try {
 				
 				System.out.println(sql);
-				System.out.println("dao : "+ keyword +" , "+ searchType);
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, keyword);

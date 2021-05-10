@@ -32,8 +32,7 @@ public class SearchMemberList extends HttpServlet {
 
 		String searchKeyword = request.getParameter("searchKeyword");
 		String searchType = request.getParameter("searchType");
-		System.out.println("searchType : " + searchType);
-		System.out.println("searchKeyword : " + searchKeyword);
+		
 		
 		
 		
@@ -74,7 +73,7 @@ public class SearchMemberList extends HttpServlet {
 						pageBar +="<span> &nbsp;&nbsp; </span>";
 					}else {
 						
-						pageBar += "<a href = '"+request.getContextPath()+"/admin/memberList?cPage="+(pageNo-1)+"&numberPerPage="+numPerPage+"'[이전]</a>";
+						pageBar += "<a href = '"+request.getContextPath()+"/admin/searchmemberlist?cPage="+ pageNo +"&numPerPage="+numPerPage+"&searchType"+searchType+"&serachKeyword="+searchKeyword+"'>[이전]</a>";
 					}
 					
 					
@@ -87,7 +86,7 @@ public class SearchMemberList extends HttpServlet {
 						if(cPage == pageNo) {
 							pageBar += "<span>&nbsp;&nbsp"+ pageNo + "&nbsp;&nbsp;</span>";
 						} else {
-							pageBar += "<a href = '"+ request.getContextPath() +"/admin/memList?cPage="+ pageNo +"&numPerPage="+numPerPage+"'>&nbsp;&nbsp;"+pageNo+"&nbsp;&nbsp;</a>";
+							pageBar += "<a href = '"+ request.getContextPath() +"/admin/searchmemberlist?cPage="+ pageNo +"&numPerPage="+numPerPage+"&searchType"+searchType+"&serachKeyword="+searchKeyword+"'>&nbsp;&nbsp;"+pageNo+"&nbsp;&nbsp;</a>";
 						}
 						
 						
@@ -106,7 +105,7 @@ public class SearchMemberList extends HttpServlet {
 						pageBar +="<span> &nbsp;&nbsp; </span>";
 					}else {
 						
-						pageBar += "<a href = '"+request.getContextPath()+"/admin/memberList?cPage="+pageNo+"&numberPerPage="+numPerPage+"'[이전]</a>";
+						pageBar += "<a href = '"+request.getContextPath()+"/admin/searchmemberlist?cPage="+ pageNo +"&numPerPage="+numPerPage+"&searchType"+searchType+"&serachKeyword="+searchKeyword+"'>[다]</a>";
 					}
 					
 		
