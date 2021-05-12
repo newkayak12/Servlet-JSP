@@ -7,16 +7,18 @@
 <style>
     section#notice-container{width:600px; margin:0 auto; text-align:center;}
     section#notice-container h2{margin:10px 0;}
-    table#tbl-notice{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse;}
+    table#tbl-notice{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both;}
     table#tbl-notice th, table#tbl-notice td {border:1px solid; padding: 5px 0; text-align:center;}
     div#pageBar{display:flex; justify-content: center;} 
     a{text-decoration: none;color: black;   }
+    input#btn-add{ float:right; margin: 0 0 15px;}
 </style>
 
 
 
 <section id="notice-container">
         <h2>공지사항</h2>
+        <input type = "button" value = "글쓰기" id="btn-add" onclick = "fn_noticeWrite()">
         <table id="tbl-notice">
             <tr>
             
@@ -40,13 +42,17 @@
       				</td>
        				<td><%=notice.getNoticeWriter() %></td>
        				<td>
-		       				<%if(notice.getFilepath() != null){%>
+		       				<%if(notice.getFilepath() != null){
+		       				System.out.println(notice.getNoticeNo()+"\n--------\n"+notice.getFilepath()+"   nn");
+		       				%>
 		       				
-		       						<img alt="" src="<%=request.getContextPath()%>/images/<%=notice.getFilepath()%>" width="16px" height="16px">
+		       						<img alt="" src="<%=request.getContextPath()%>/images/file.png" width="16px" height="16px">
 		       				
-		       				<% } else {%>
+		       				<% } else {
 		       				
-		       						<span>NO_IMAGE</span>
+		       				System.out.println(notice.getFilepath()+"   null\n--------");%>
+		       				
+		       						<span>NO_FILE</span>
 		       				
 		       				<%} %>
        				</td>
@@ -62,13 +68,18 @@
             		}
             	}
             %>
-            
-	<!-- 내용출력할것
-	첨부파일 있으면 이미지, 없으면 공란으로 표시
-	이미지파일은 web/images/file.png에 저장 -->
+	
         </table>
     </section>
 
+	<script>
+	
+		// 공지사항 글쓰기 버튼에 클릭이벤트에 연결된 함수 
+		const fn_noticeWrite = () => {
+			location.assign("<%=request.getContextPath()%>/notice/noticeForm");
+		}
+	
+	</script>
 
 <div id="pageBar">
 	<%=request.getAttribute("pageBar") %>

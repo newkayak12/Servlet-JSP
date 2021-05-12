@@ -88,9 +88,9 @@
 			</div>
 			<nav>
 				<ul class="main-nav">
-					<li class="home"><a href="">Home</a></li>
+					<li class="home"><a href="<%=request.getContextPath()%>/">Home</a></li>
 					<li id="notice"><a href="<%=request.getContextPath()%>/notice/noticelist">공지사항</a></li>
-					<li id="board"><a href="">게시판</a></li>
+					<li id="board"><a href="<%=request.getContextPath()%>/board/boardlist">게시판</a></li>
 					<% if((loginMember != null)  &&  (loginMember.getUserId()).equals("admin"))  {%>
 					<li id="admin-member"><a href="<%=request.getContextPath()%>/admin/memberList">회원 관리</a></li>
 					<!-- 쿼리 스트링으로 넘겨도 될 것 같구... -->

@@ -10,16 +10,16 @@ import com.notice.model.service.*;
 import com.notice.model.vo.*;
 
 /**
- * Servlet implementation class NoticeDetail
+ * Servlet implementation class NoticeUpdateServlet
  */
-@WebServlet("/notice/noticedetail")
-public class NoticeDetail extends HttpServlet {
+@WebServlet("/notice/noticeupdate")
+public class NoticeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetail() {
+    public NoticeUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,15 +28,15 @@ public class NoticeDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String noticeNo = request.getParameter("notice_no");
-		String noticeWriter = request.getParameter("notice_writer");
+		// TODO Auto-generated method stub
 		
-		Notice result = new NoticeService().showDetail(noticeNo);
+		String no = request.getParameter("no");
+		//사용자가 수정하고자 하는 게시판의 번호를 번호를 보냈으니 notice를 가져온다.
+		Notice n = new NoticeService().showDetail(no);
 		
+		request.setAttribute("notice", n);
+		request.getRequestDispatcher("/views/notice/noticeupdate.jsp").forward(request, response);
 		
-		request.setAttribute("result2", result);
-		System.out.println("detail"+ result);
-		request.getRequestDispatcher("/views/notice/noticedetail.jsp").forward(request, response);
 	}
 
 	/**

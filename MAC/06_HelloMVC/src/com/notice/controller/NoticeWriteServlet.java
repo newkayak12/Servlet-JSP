@@ -1,25 +1,25 @@
 package com.notice.controller;
 
-import java.io.*;
-
-import javax.servlet.*;
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.notice.model.service.*;
-import com.notice.model.vo.*;
 
 /**
- * Servlet implementation class NoticeDetail
+ * Servlet implementation class NoticeForm
  */
-@WebServlet("/notice/noticedetail")
-public class NoticeDetail extends HttpServlet {
+@WebServlet("/notice/noticeForm")
+public class NoticeWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetail() {
+    public NoticeWriteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,15 +28,10 @@ public class NoticeDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String noticeNo = request.getParameter("notice_no");
-		String noticeWriter = request.getParameter("notice_writer");
 		
-		Notice result = new NoticeService().showDetail(noticeNo);
+		request.getRequestDispatcher("/views/notice/noticeForm.jsp").forward(request, response);
 		
 		
-		request.setAttribute("result2", result);
-		System.out.println("detail"+ result);
-		request.getRequestDispatcher("/views/notice/noticedetail.jsp").forward(request, response);
 	}
 
 	/**

@@ -68,12 +68,11 @@ public class NoticeDao {
 		return result;
 	}
 
-	public Notice showDetail(Connection conn, String noticeNo, String noticeWriter) {
+	public Notice showDetail(Connection conn, String noticeNo) {
 		Notice notice = null;
 		try {
 				pstmt = conn.prepareStatement(prop.getProperty("showDetail"));
 				pstmt.setString(1, noticeNo);
-				pstmt.setString(2, noticeWriter);
 				
 				rs =pstmt.executeQuery();
 				
@@ -127,6 +126,71 @@ public class NoticeDao {
 		close(pstmt);
 	}
 		
+		return result;
+	}
+
+	public int noticeWrite(Notice n, Connection conn) {
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("noticeInsert"));
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeWriter());
+			pstmt.setString(3, n.getNoticeContent());
+			pstmt.setString(4, n.getFilepath());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
+
+	public int noticeDelete(Connection conn, int no) {
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("noticeDelete"));
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
+		
+		return result;
+	}
+
+	public int noticeUpdate(Notice n, Connection conn) {
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("noticeupdate"));
+			pstmt.setString(1,	n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeWriter());
+			pstmt.setString(3, n.getNoticeContent());
+			pstmt.setString(4,  n.getFilepath());
+			pstmt.setInt(5, n.getNoticeNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		// TODO Auto-generated method stub
 		return result;
 	}
 

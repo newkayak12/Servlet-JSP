@@ -20,10 +20,10 @@ public class NoticeService {
 		return result;
 	}
 
-	public Notice showDetail(String noticeNo, String noticeWriter) {
+	public Notice showDetail(String noticeNo) {
 		conn = getConnection();
 				
-		Notice result = dao.showDetail(conn, noticeNo, noticeWriter);	
+		Notice result = dao.showDetail(conn, noticeNo);	
 				
 		close(conn);
 		
@@ -38,6 +38,54 @@ public class NoticeService {
 				
 		close(conn);
 		
+		
+		return result;
+	}
+
+	public int noticeWrite(Notice n) {
+		conn= getConnection();
+		
+		int result = dao.noticeWrite(n, conn);
+		
+		if(result>0){
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		
+		return result;
+	}
+
+	public int noticeDelete(int no) {
+		conn = getConnection();
+		
+		int result = dao.noticeDelete(conn, no);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		
+		return result;
+	}
+
+	public int noticeUpdate(Notice n) {
+		conn = getConnection();
+		
+		int result = dao.noticeUpdate(n,conn);
+		
+		if( result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		
 		return result;
 	}

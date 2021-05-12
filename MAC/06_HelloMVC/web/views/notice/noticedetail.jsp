@@ -30,10 +30,13 @@ Member loginMember=(Member)session.getAttribute("loginMember");
             <td>
            	<% if(notice.getFilepath() != null){ %>
            		
-           		<img alt="" src="<%=request.getContextPath()%>/images/<%=notice.getFilepath()%>" width="16px" height="16px">
+           		<a href ="<%=request.getContextPath() %>/notice/fileDownload?fName=<%=notice.getFilepath() %>" ><img alt="" src="<%=request.getContextPath()%>/images/file.png" width="16px" height="16px"></a>
            		
            	<%} else { %>
-           		<div></div>
+           		<div>
+           			NO_FILE
+           		</div>
+           		
            	<%} %>
             </td>
         </tr>
@@ -49,14 +52,26 @@ Member loginMember=(Member)session.getAttribute("loginMember");
         
         
             <th colspan="2">
-                <input type="button" value="수정하기" onclick="">
-                <input type="button" value="삭제하기" onclick="">
+                <input type="button" value="수정하기" onclick="location.assign('<%=request.getContextPath() %>/notice/noticeupdate?no=<%=notice.getNoticeNo()%> ')">
+                <input type="button" value="삭제하기" onclick="location.assign('<%=request.getContextPath()%>/notice/noticedelete?no=<%=notice.getNoticeNo()%>')">
             </th>
         </tr>
     </table>
     </div>
 
 <%} %>
+
+<form id="delormodi_Frm" name="delormodi_Frm"> 
+	<input type="hidden" name="noticeNo" id="noticeNo">
+</form>
+
+
+<script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+<script>
+
+
+
+</script>
 
      <style>
     section#notice-container{width:600px; margin:0 auto; text-align:center;}
