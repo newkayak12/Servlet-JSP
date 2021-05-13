@@ -73,5 +73,49 @@ public class BoardService {
 		return result;
 	}
 
+	public int boardDelete(int no) {
+		conn = getConnection();
+		
+		
+		int result = bd.boardDelete(no, conn);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int insertBoardComment(BoardComment bc) {
+		conn= getConnection();
+		
+		int result = bd.insertBoardComment(bc, conn);
+		
+				if(result>0) {
+					commit(conn);
+				} else {
+					rollback(conn);
+				}
+		
+		close(conn);
+		return result;
+	}
+
+	public List<BoardComment> selectBoardComment(int no) {
+		
+		conn= getConnection();
+		List<BoardComment> result = bd.selectBoardComment(conn, no);
+				
+		close(conn);
+		// TODO Auto-generated method stub
+		return result;
+	}
+
+	
+
 	
 }

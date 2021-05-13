@@ -9,7 +9,6 @@
 
 
 
-
 <style>
 	section#board-container{width:600px; margin:0 auto; text-align:center;}
 	section#board-container h2{margin:10px 0;}
@@ -52,7 +51,7 @@
 					<a href = "<%=request.getContextPath()%>/board/boarddetail?no=<%=b.getBoardNo()
 					%>"> <%=b.getBoardTitle()%> </a>
 					
-					<%System.out.println(b.getBoardNo()+" "+b.getBoardTitle()); %>
+					
 				</td>
 				<td>
 					<%=b.getBoardWriter() %>

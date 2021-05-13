@@ -52,7 +52,7 @@ public class NoticeFileDownload extends HttpServlet {
 		}
 		
 //		4. 파일에 대한 (응답)MIME타입 설정하기 / header 설정 
-		response.setContentType("application/octect-stream");
+		response.setContentType("application/octet-stream");
 		response.setHeader("Content-disposition", "attachment;fileName="+fileRName);
 		
 		

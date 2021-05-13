@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.board.model.service.*;
 import com.oreilly.servlet.*;
 import com.oreilly.servlet.multipart.*;
 
@@ -29,25 +30,31 @@ public class BoardDownload extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String fileName = request.getParameter("fileName");
+		String oriname = request.getParameter("oriname");
+		String rename = request.getParameter("rename");
+		
+		
+		
+		
+		
 		String path = request.getServletContext().getRealPath("/upload/board/");
-		path = path+fileName;
 		
 		
-		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path));
+		
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path+rename));
 		String fileRename = " ";
 		String checkMSIE = request.getHeader("user-agent");
 		boolean isMSIE = checkMSIE.indexOf("MSIE") != -1 || checkMSIE.indexOf("Trident") !=-1;
 		
 		if(isMSIE) {
 			
-			fileRename = URLEncoder.encode("fileName","utf-8").replaceAll("\\+", "%20");
+			fileRename = URLEncoder.encode(oriname,"utf-8").replaceAll("\\+", "%20");
 		} else {
 			
-			fileRename = new String(fileName.getBytes("utf-8"),"ISO_8859_1");
+			fileRename = new String(oriname.getBytes("utf-8"),"ISO-8859-1");
 		}
 		
-		response.setContentType("application/octect-stream");
+		response.setContentType("application/octet-stream");
 		response.setHeader("Content-disposition", "attachment;fileName="+fileRename);
 		
 		BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());

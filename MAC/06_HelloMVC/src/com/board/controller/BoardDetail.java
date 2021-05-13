@@ -1,6 +1,7 @@
 package com.board.controller;
 
 import java.io.*;
+import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -29,7 +30,6 @@ public class BoardDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("boardDetail servlet income");
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		System.out.println("detail : "+no);
@@ -37,6 +37,8 @@ public class BoardDetail extends HttpServlet {
 
 		
 		Board result = new BoardService().boardDetail(no);
+		List<BoardComment> comment = new BoardService().selectBoardComment(no);
+		
 		
 		//쿠키에 저장하는 값
 		//boardRead를 키로 읽은 게시글의 번호르 저장
@@ -85,11 +87,14 @@ public class BoardDetail extends HttpServlet {
 			Cookie cookie = new Cookie("boardRead" , boardRead+ "|"+no+"|");
 			cookie.setMaxAge(60*60*24);
 			response.addCookie(cookie);
-		}
+		} 
+		
+		
 		
 		
 		
 		request.setAttribute("result", result);
+		request.setAttribute("comment", comment);
 		
 		request.getRequestDispatcher("/views/board/boarddetail.jsp").forward(request, response);
 		
