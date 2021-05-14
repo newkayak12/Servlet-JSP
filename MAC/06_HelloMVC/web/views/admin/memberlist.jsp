@@ -84,7 +84,7 @@
            
            })  */
         
-
+<%-- 
           const fn_numPerPageChange = () =>{
         	  $("#numPerPage_hiddenType").val('<%=selected%>')
         	  $("#numPerPage_hiddenSearch").val('<%=keyword%>')
@@ -110,9 +110,23 @@
               $("#numPerPage-form").submit();
         	  
           }
-          
+           --%>
               
-         
+         $(function(){
+        	$("#numPerPage").chage((e)=>{
+        		
+        		$.ajax({
+        			url:"<%=request.getContextPath()%>/admin/memberListAjax",
+        			data"{cPage:<%=request.getParameter("cPage")%>,"numPerPage": $(e.target).val()},
+        			success:data=>{
+        				
+        				console.log(data);
+        				$("#tbl-member").html(data);
+        				
+        			}
+        		})
+        	}) 
+         })
             
         
     </script>
@@ -153,7 +167,7 @@
         <div id = "numPerPage-container">
         	페이지당 회원수 : 
         	<form action="" id="numPerPage-form">
-        		<select name = "numPerPage" id="numPerPage" onchange="fn_numPerPageChange()">
+        		<select name = "numPerPage" id="numPerPage" ><!-- onchange="fn_numPerPageChange()" -->
         			<option value="10"<%--  <%=(request.getParameter("numPerPage")).equals("10")||request.getAttribute("nPerPage")==null? "selected":"" %> --%> >10</option>
         			<option value="5"<%-- "<%=(request.getParameter("numPerPage")).equals("5")&&request.getAttribute("nPerPage")!=null? "selected":"" %> --%> >5</option>
         			<option value="3"<%--  <%=(request.getParameter("numPerPage")).equals("3")&&request.getAttribute("nPerPage")!=null? "selected":"" %> --%>>3</option>
@@ -216,7 +230,7 @@
             	<p> 결과가 없습니다. </p> 
             	 
             <%  }%>
-            </tbody>
+            </tbody> 
         </table>
    			<div id = "pageBar"> <%= request.getAttribute("pageBar") %></div>
     </section>

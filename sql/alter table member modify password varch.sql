@@ -153,3 +153,7 @@ Insert into webtest.BOARD (BOARD_NO,BOARD_TITLE,BOARD_WRITER,BOARD_CONTENT,BOARD
 Insert into webtest.BOARD (BOARD_NO,BOARD_TITLE,BOARD_WRITER,BOARD_CONTENT,BOARD_ORIGINAL_FILENAME,BOARD_RENAMED_FILENAME,BOARD_DATE,BOARD_READCOUNT) values (SEQ_BOARD_NO.nextval,'안녕하세요, 게시판입니다 - 30','admin','반갑습니다',null,null,to_date('18/04/10','RR/MM/DD'),0);
 
 select * from board;
+
+select * from board_comment where BOARD_REF = 46  start with board_comment_level=1 connect by prior board_comment_no=board_comment_ref;
+
+select * from board_comment a join board_comment b on( a.board_commnet_no = b.board_comment_ref ); where board_ref=46;

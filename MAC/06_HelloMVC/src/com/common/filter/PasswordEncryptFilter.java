@@ -11,7 +11,7 @@ import javax.servlet.http.*;
  */
 
 //필터링 기준은 꼭 주소 매핑뿐만 아니라 Servlet이름으로도 가능하다고 했음
-@WebFilter(servletNames = {"loginservlet", "memberupdateservlet", "enrollendservet", "updatePasswordEnd", "passwordUpdate" })
+@WebFilter(servletNames = {"loginservlet", "memberupdateservlet", "enrollendservet", "updatePasswordEnd", "passwordUpdate","ajaxMember" })
 public class PasswordEncryptFilter implements Filter {
 
     /**
